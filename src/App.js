@@ -31,19 +31,23 @@ const App = () => {
 
 
   return (
-  <div>
+  <div className="min-h-screen flex flex-col bg-bgDark2">
     <div>
       <Navbar></Navbar>
     </div>
-    <div>
-      <Filter category={category} setCategory={setCategory} filterData = {filterData}></Filter>
+    <div className="bg-bgDark2">
+          <div>
+            <Filter category={category} setCategory={setCategory} filterData = {filterData}></Filter>
+          </div>
+          <div className="w-11/12 max-w-[1200px] 
+        mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
+            
+            {
+              loading ? (<Spinner></Spinner>) : (<Cards category={category} setCategory={setCategory} courses = {courses}></Cards>)
+            }
+          </div>
     </div>
-    <div>
-      
-      {
-        loading ? (<Spinner></Spinner>) : (<Cards category={category} setCategory={setCategory} courses = {courses}></Cards>)
-      }
-    </div>
+    
   </div>
   );
 };
