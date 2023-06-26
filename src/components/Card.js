@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {FcLike, FcLikePlaceholder} from "react-icons/fc";
 import {toast} from "react-toastify";
 
@@ -6,7 +6,9 @@ const Card = (props) =>  {
     let likedCourses = props.likedCourses;
     let setLikedCourses = props.setLikedCourses;
    let course = props.courseData; 
-
+    const [readMoreClicked, setReadMoreClicked] = useState(false);
+    let description = course.description;
+    
    function clickHandler(){
     //for when the course is already liked;
     if(likedCourses.includes(course.id)){
@@ -24,6 +26,10 @@ const Card = (props) =>  {
     }
    }
 
+   function readMoreHandler(){
+    setReadMoreClicked(!readMoreClicked);
+   }
+
     return(
         <div>
             <div>
@@ -32,7 +38,7 @@ const Card = (props) =>  {
             <div>
                 <button onClick={clickHandler}>
                     {
-                    likedCourses.includes(course.id) ? (<FcLike/>) : <FcLikePlaceholder/> 
+                    likedCourses.includes(course.id) ? (<FcLike/>) : (<FcLikePlaceholder/>) 
                     }
                 </button>
             </div>
@@ -41,7 +47,10 @@ const Card = (props) =>  {
                     {course.title}
                 </p>
                 <p>
-                    {course.description}
+                    {
+                        (course.length < 100)  ? (description) : (description.substring(0,100) + "...")
+                    }
+                    
                 </p>
             </div>
         </div>
