@@ -16,3 +16,7 @@
         transform: rotate(1turn);
     }
 }
+
+.filterBtn{
+    margin-left: 20px;
+}

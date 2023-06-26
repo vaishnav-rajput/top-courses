@@ -10,6 +10,7 @@ const App = () => {
 
   const [courses, setCourses] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(filterData[0].title);
 
   async function fetchData(apiUrl){
     setLoading(true);
@@ -35,12 +36,12 @@ const App = () => {
       <Navbar></Navbar>
     </div>
     <div>
-      <Filter filterData = {filterData}></Filter>
+      <Filter category={category} setCategory={setCategory} filterData = {filterData}></Filter>
     </div>
     <div>
       
       {
-        loading ? (<Spinner></Spinner>) : (<Cards courses = {courses}></Cards>)
+        loading ? (<Spinner></Spinner>) : (<Cards category={category} setCategory={setCategory} courses = {courses}></Cards>)
       }
     </div>
   </div>
